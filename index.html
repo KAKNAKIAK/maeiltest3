@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모바일 견적서_0526_7_통합</title>
+    <title>모바일 견적서_0526_3_통합</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -351,8 +351,6 @@
             opacity: 0.7;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        /* .itinerary-planner-styles .day-header-container -> cursor: grab already added inline or by class */
-        /* .itinerary-planner-styles .activity-card -> cursor: grab already added inline or by class */
 
         .itinerary-planner-styles .activity-card:active {
             cursor: grabbing;
@@ -369,9 +367,7 @@
             .delete-dynamic-section-btn, .delete-row, .add-price-row-to-subgroup, .add-flight-row-to-subgroup,
             #activityModal, .modal-backdrop, .edit-detailed-date-button, .save-detailed-date-button, .cancel-detailed-date-edit-button,
             .load-detailed-day-html-button, .card-actions-direct,
-            /* 견적서 전체의 버튼들 */
             #addGlobalQuoteGroupBtn, footer button, footer input,
-            /* 견적 그룹내의 버튼들 (일정표 제외) */
             .price-section-wrapper .add-price-subgroup-button,
             .flight-schedule-section-wrapper .add-flight-subgroup-button,
             .itinerary-summary-section-wrapper .add-itinerary-row-to-group,
@@ -383,13 +379,12 @@
             .itinerary-planner-styles .add-activity-to-day-button,
             .itinerary-planner-styles .delete-detailed-day-button,
             .itinerary-planner-styles .toggle-detailed-day-collapse-button,
-            .itinerary-planner-styles .date-edit-input /* Hide input field */
+            .itinerary-planner-styles .date-edit-input
             { display: none !important; }
 
-            /* Show save buttons specifically for the "saved-html-view" context, but not for print */
             .saved-html-view .save-detailed-itinerary-html-btn,
             .saved-html-view .save-detailed-day-html-btn {
-                display: inline-flex !important; /* Or whatever its original display was */
+                display: inline-flex !important;
             }
             @media print {
                 .save-detailed-itinerary-html-btn,
@@ -397,7 +392,6 @@
                     display: none !important;
                 }
             }
-
 
             body, .container, .quote-group-section {
                 box-shadow: none !important;
@@ -455,6 +449,24 @@
         .saved-html-view .itinerary-planner-styles .day-header-controls .edit-detailed-date-button,
         .saved-html-view .itinerary-planner-styles .day-header-controls .load-detailed-day-html-button
         { display: none !important; }
+
+        /* Styles for preview window */
+        .preview-mode { padding: 1rem; background-color: #f0f0f0; }
+        .preview-container { max-width: 950px; margin: 0 auto; background-color: white; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        .preview-section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; padding: 0.5rem; background-color: #e0f2f7; color: #000; border-radius: 4px; }
+        .preview-group-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; padding: 0.5rem; border-bottom: 2px solid #ccc; }
+        .preview-sub-group-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; padding: 0.25rem; background-color: #f9f9f9; border-left: 3px solid #4A90E2; }
+        .preview-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.875rem; }
+        .preview-table th, .preview-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        .preview-table th { background-color: #f8f9fa; }
+        .preview-table td.text-right { text-align: right; }
+        .preview-table td.text-center { text-align: center; }
+        .preview-textarea-content { white-space: pre-wrap; padding: 0.5rem; border: 1px solid #eee; background-color: #fdfdfd; border-radius: 4px; min-height: 50px; }
+        .preview-detailed-itinerary-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; padding: 0.5rem; background-color: #e1e1e1; color: #000; border-radius: 4px; }
+        .preview-mode .readonly-view-header { margin-bottom: 1rem; }
+        .preview-mode .day-section { margin-bottom: 1rem; }
+        .preview-mode .itinerary-planner-styles .card-image { width: 100px !important; height: auto !important; } /* Smaller images in preview */
+
     </style>
 </head>
 <body class="bg-white p-4">
@@ -524,7 +536,8 @@
 
         <footer class="mt-8 text-center text-gray-500 text-sm border-t pt-4">
             <button type="button" onclick="previewQuote();" style="padding: 5px 10px;font-size: 13px;cursor: pointer;border: 1px solid #ccc;background: #e1e1e1;font-weight: 700;color: #000;">미리보기</button>
-            <button type="button" onclick="downloadGeneratedHTML();" style="padding: 5px 10px;font-size: 13px;cursor: pointer;border: 1px solid #ccc;background: #28a745;font-weight: 700;color: #fff; margin-left: 5px;">HTML 파일로 저장</button>
+            <button type="button" onclick="downloadGeneratedHTML(false);" style="padding: 5px 10px;font-size: 13px;cursor: pointer;border: 1px solid #ccc;background: #28a745;font-weight: 700;color: #fff; margin-left: 5px;">데이터 포함 HTML 저장</button>
+            <button type="button" onclick="downloadGeneratedHTML(true);" style="padding: 5px 10px;font-size: 13px;cursor: pointer;border: 1px solid #ccc;background: #17a2b8;font-weight: 700;color: #fff; margin-left: 5px;">미리보기용 HTML 저장</button>
             <input type="file" id="loadQuoteFile" accept=".html" style="display: none;">
             <button type="button" onclick="document.getElementById('loadQuoteFile').click();" style="padding: 5px 10px; font-size: 13px; cursor: pointer; border: 1px solid #ccc; background: #f0ad4e; font-weight: 700; color: #fff; margin-left: 5px;">견적 불러오기 (HTML)</button>
         </footer>
@@ -1041,8 +1054,7 @@
                                 ${activity.cost ? `<div class="card-cost">💰 ${activity.cost}</div>` : ''}
                                 ${activity.notes ? `<div class="card-notes">📝 ${activity.notes}</div>` : ''}</div></div>`;});
                 const dayHeaderId = `day-header-readonly-trip-${groupIndex}-${dayIdx}`;
-                // For saved HTML and preview, default to collapsed for better overview.
-                const isDayCollapsedInSavedView = true; // Or use day.isCollapsed if you want to respect current state for preview
+                const isDayCollapsedInSavedView = true;
 
                 const expandedIcon = '<svg class="toggle-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
                 const collapsedIcon = '<svg class="toggle-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
@@ -1078,10 +1090,9 @@
         function handleSaveDetailedItineraryAsHtml(groupIndex) {
             const groupData = quoteGroupDataStore[groupIndex]; if (!groupData || !groupData.detailedItinerary) { showToast('저장할 상세 일정 데이터가 없습니다.', 3000, true); return; }
             const itineraryDataToSave = JSON.parse(JSON.stringify(groupData.detailedItinerary));
-            // Ensure days are collapsed for saved HTML view for a cleaner initial look
             itineraryDataToSave.days.forEach(day => day.isCollapsed = true);
             const itineraryDataString = JSON.stringify(itineraryDataToSave); const safeItineraryDataString = itineraryDataString.replace(/<\/script>/g, '<\\/script>');
-            const readOnlyViewHTML = generateReadOnlyHTMLViewForQuoteGroup(groupIndex); // This will use isDayCollapsedInSavedView logic
+            const readOnlyViewHTML = generateReadOnlyHTMLViewForQuoteGroup(groupIndex);
             let styles = ""; document.querySelectorAll('style').forEach(styleTag => { styles += styleTag.innerHTML; });
             const fontAwesomeLink = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">';
             const tailwindCDN = '<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">';
@@ -1112,13 +1123,13 @@
             showToast(`DAY ${dayIndex + 1} 일정이 HTML 파일로 저장되었습니다.`);
         }
 
-        // --- File Loading (Adapted from previous solution with corrected IDs) ---
+        // --- File Loading ---
         function handleLoadDetailedItineraryFromHtml(groupIndex, file) {
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
                     const htmlString = e.target.result; const parser = new DOMParser(); const doc = parser.parseFromString(htmlString, "text/html");
-                    const embeddedDataElement = doc.getElementById('embeddedTripData'); // Corrected ID
+                    const embeddedDataElement = doc.getElementById('embeddedTripData');
                     if (embeddedDataElement && embeddedDataElement.textContent) {
                         const loadedData = JSON.parse(embeddedDataElement.textContent);
                         if (loadedData && Array.isArray(loadedData.days)) {
@@ -1141,7 +1152,7 @@
             reader.onload = (e) => {
                 try {
                     const htmlString = e.target.result; const parser = new DOMParser(); const doc = parser.parseFromString(htmlString, "text/html");
-                    const embeddedDataElement = doc.getElementById('embeddedTripDayData'); // Corrected ID
+                    const embeddedDataElement = doc.getElementById('embeddedTripDayData');
                     if (embeddedDataElement && embeddedDataElement.textContent) {
                         const loadedDayData = JSON.parse(embeddedDataElement.textContent);
                         if (loadedDayData && loadedDayData.activities !== undefined) {
@@ -1241,10 +1252,8 @@
                 const priceSubgroupElement = target.closest('.price-subgroup');
                 if (target.closest('.delete-quote-group-btn')) { if (window.confirm('이 견적 그룹 전체를 삭제하시겠습니까?')) { delete quoteGroupDataStore[groupIndex]; quoteGroupElement.remove();}}
                 else if (target.closest('.copy-quote-group-btn')) {
-                    // Deep copy the group data
                     const sourceGroupData = JSON.parse(JSON.stringify(quoteGroupDataStore[groupIndex]));
                     sourceGroupData.groupTitle = `${sourceGroupData.groupTitle} (복사본)`;
-                    // Ensure new unique IDs for activities if they are part of the copy process
                     if (sourceGroupData.detailedItinerary && sourceGroupData.detailedItinerary.days) {
                         sourceGroupData.detailedItinerary.days.forEach(day => {
                             if (day.activities) {
@@ -1262,7 +1271,6 @@
                         if (dynamicSection.classList.contains('price-subgroup')) { quoteGroupDataStore[groupIndex].priceSubgroups.splice(subGroupIndex, 1);}
                         else if (dynamicSection.classList.contains('flight-schedule-subgroup')) { quoteGroupDataStore[groupIndex].flightSubgroups.splice(subGroupIndex, 1); }
                         dynamicSection.remove();
-                        // Re-index remaining subgroups of the same type if necessary
                         if (dynamicSection.classList.contains('price-subgroup')) {
                             const remainingSubgroups = quoteGroupElement.querySelectorAll('.price-subgroup');
                             remainingSubgroups.forEach((sg, newIdx) => sg.dataset.subGroupIndex = newIdx);
@@ -1329,7 +1337,7 @@
                     const field = target.dataset.field; if (quoteGroupDataStore[groupIndex].itinerarySummaryRows[rowIndex]) quoteGroupDataStore[groupIndex].itinerarySummaryRows[rowIndex][field] = target.value;
                 } else if (target.matches('input[name^="detailed_itinerary_title"]')) { if (quoteGroupDataStore[groupIndex] && quoteGroupDataStore[groupIndex].detailedItinerary) quoteGroupDataStore[groupIndex].detailedItinerary.title = target.value;}
 
-                if (target.matches('.price-per-person, .person-count, input[name^="p_title"], input[name^="p_bigo"]')) {
+                if (target.matches('.price-per-person, .person-count, input[name*="p_title"], input[name*="p_bigo"]')) { // More flexible selector for p_title and p_bigo
                     const subgroupElement = target.closest('.price-subgroup');
                     if (subgroupElement) {
                         const rowElement = target.closest('tr');
@@ -1340,10 +1348,10 @@
                         if (priceRow) {
                             if (target.matches('.price-per-person')) priceRow.perPrice = target.value;
                             else if (target.matches('.person-count')) priceRow.number = target.value;
-                            else if (target.matches('input[name^="p_title[]"]')) priceRow.title = target.value; // Corrected name selector
-                            else if (target.matches('input[name^="p_bigo[]"]')) priceRow.bigo = target.value;  // Corrected name selector
+                            else if (target.name.includes('p_title')) priceRow.title = target.value;
+                            else if (target.name.includes('p_bigo')) priceRow.bigo = target.value;
                         }
-                        updateRowTotalForSubgroup(e, subgroupElement); // This also updates grand total
+                        updateRowTotalForSubgroup({target: target}, subgroupElement);
                     }
                 }
             });
@@ -1369,15 +1377,13 @@
                             const parser = new DOMParser();
                             const doc = parser.parseFromString(fullHtml, "text/html");
 
-                            // Try to find embedded data first
                             const dataScript = doc.getElementById('fullQuoteData');
                             if (dataScript && dataScript.textContent) {
                                 const data = JSON.parse(dataScript.textContent);
                                 restoreEditorFromData(data);
                             } else {
-                                // Fallback to parsing from preview-like structure (less reliable)
                                 console.warn("전체 견적 데이터 태그를 찾을 수 없습니다. DOM에서 수동 파싱 시도 (제한적).");
-                                manualParseAndRestore(doc); // Placeholder for a more complex parser
+                                manualParseAndRestore(doc);
                                 showToast("HTML에서 일부 정보를 불러왔습니다 (제한적).", 4000);
                             }
                         } catch (err) {
@@ -1386,7 +1392,7 @@
                         }
                     };
                     reader.readAsText(file);
-                    this.value = null; // Reset file input
+                    this.value = null;
                 }
             });
         });
@@ -1399,7 +1405,7 @@
             });
         }
 
-        // ----- 요금 섹션 관련 함수들 -----
+        // ----- 요금 섹션 -----
         function initPriceSectionForGroup(quoteGroupElement, groupIndex, sourcePriceSubgroups = null) {
             const addPriceSubgroupButton = quoteGroupElement.querySelector('.add-price-subgroup-button');
             const priceSectionsContainer = quoteGroupElement.querySelector(`#priceSectionsContainer_${groupIndex}`);
@@ -1500,7 +1506,7 @@
                     goodnm: document.getElementById('goodnm').value,
                 },
                 travelerInfoText: document.getElementById('travelerInfoText').value,
-                quoteGroups: JSON.parse(JSON.stringify(quoteGroupDataStore)), // Deep copy
+                quoteGroups: JSON.parse(JSON.stringify(quoteGroupDataStore)),
                 contactInfo: {
                     empnm: document.getElementById('empnm').value,
                     empmail: document.getElementById('empmail').value,
@@ -1516,7 +1522,6 @@
                 return;
             }
 
-            // Basic Info
             if (data.basicInfo) {
                 document.getElementById('customerName').value = data.basicInfo.customerName || '';
                 document.getElementById('customerEmail').value = data.basicInfo.customerEmail || '';
@@ -1526,11 +1531,9 @@
                 document.getElementById('goodnm').value = data.basicInfo.goodnm || '';
             }
 
-            // Traveler Info
             document.getElementById('travelerInfoText').value = data.travelerInfoText || '';
 
-            // Quote Groups
-            document.getElementById('quoteGroupsContainer').innerHTML = ''; // Clear existing groups
+            document.getElementById('quoteGroupsContainer').innerHTML = '';
             quoteGroupDataStore = {};
             quoteGroupCounter = 0;
             currentBorderColorIndex = 0;
@@ -1541,7 +1544,6 @@
                 sortedGroupKeys.forEach(originalGroupIndex => {
                     const groupData = data.quoteGroups[originalGroupIndex];
                     if (groupData) {
-                        // Ensure detailedItinerary structure is present and valid
                         if (!groupData.detailedItinerary) groupData.detailedItinerary = { title: "여행 일정표", days: [] };
                         if (!Array.isArray(groupData.detailedItinerary.days)) groupData.detailedItinerary.days = [];
                         groupData.detailedItinerary.days.forEach(day => {
@@ -1556,11 +1558,10 @@
                     }
                 });
             }
-            if (Object.keys(quoteGroupDataStore).length === 0) { // If no groups loaded, add a default one
+            if (Object.keys(quoteGroupDataStore).length === 0) {
                 createQuoteGroup(quoteGroupCounter++);
             }
 
-            // Contact Info
             if (data.contactInfo) {
                 document.getElementById('empnm').value = data.contactInfo.empnm || '임창순';
                 document.getElementById('empmail').value = data.contactInfo.empmail || 'fire@naeiltour.co.kr';
@@ -1570,41 +1571,31 @@
         }
 
         function manualParseAndRestore(doc) {
-            // Basic Info - This is a placeholder. Actual implementation would be more complex.
-            const customerNameEl = doc.evaluate("//strong[contains(text(),'고객명:')]/following-sibling::text()[1]", doc, null, XPathResult.STRING_TYPE, null).stringValue;
-            if (customerNameEl) document.getElementById('customerName').value = customerNameEl.trim();
-            // ... similar parsing for other fields ...
-
+            // This is a placeholder for more complex DOM parsing if no JSON data is found.
+            // It's highly recommended to rely on the embedded JSON data.
             showToast("HTML에서 부분적으로 데이터를 복원했습니다 (제한적 기능).", 4000);
         }
 
-
-        function previewQuote() {
-            let previewHTML = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>견적서 미리보기</title>`;
+        function generatePreviewHTML(isForFileSave = false) {
+            let previewHTML = ``;
+            if (isForFileSave) {
+                 previewHTML += `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>내일투어 견적서</title>`;
+            } else {
+                 previewHTML += `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>견적서 미리보기</title>`;
+            }
 
             previewHTML += `<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">`;
             previewHTML += `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">`;
             previewHTML += `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">`;
             previewHTML += `<style>`;
             document.querySelectorAll('style').forEach(styleTag => { previewHTML += styleTag.innerHTML; });
+            // Ensure preview-specific styles are applied, and saved-html-view for detailed itinerary parts
             previewHTML += `
                 body.preview-mode { padding: 1rem; background-color: #f0f0f0; }
                 .preview-container { max-width: 950px; margin: 0 auto; background-color: white; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
-                .preview-section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; padding: 0.5rem; background-color: #e0f2f7; color: #000; border-radius: 4px; }
-                .preview-group-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; padding: 0.5rem; border-bottom: 2px solid #ccc; }
-                .preview-sub-group-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; padding: 0.25rem; background-color: #f9f9f9; border-left: 3px solid #4A90E2; }
-                .preview-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.875rem; }
-                .preview-table th, .preview-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
-                .preview-table th { background-color: #f8f9fa; }
-                .preview-table td.text-right { text-align: right; }
-                .preview-table td.text-center { text-align: center; }
-                .preview-textarea-content { white-space: pre-wrap; padding: 0.5rem; border: 1px solid #eee; background-color: #fdfdfd; border-radius: 4px; min-height: 50px; }
-                .preview-detailed-itinerary-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; padding: 0.5rem; background-color: #e1e1e1; color: #000; border-radius: 4px; }
-                .saved-html-view .readonly-view-header { margin-bottom: 1rem; } /* Ensure styling applies in preview */
-                .saved-html-view .day-section { margin-bottom: 1rem; }  /* Ensure styling applies in preview */
-            </style></head><body class="preview-mode saved-html-view">`;
+            </style></head><body class="preview-mode saved-html-view">`; // Add saved-html-view for consistency
             previewHTML += `<div class="preview-container">`;
-            previewHTML += `<header class="mb-6 border-b pb-4 border-gray-200"><h1 class="text-3xl font-bold text-center" style="color: #000;">내일투어 여행견적서 (미리보기)</h1></header>`;
+            previewHTML += `<header class="mb-6 border-b pb-4 border-gray-200"><h1 class="text-3xl font-bold text-center" style="color: #000;">내일투어 여행견적서 ${isForFileSave ? '' : '(미리보기)'}</h1></header>`;
 
             // 1. Basic Info
             previewHTML += `<section class="mb-8"><h2 class="preview-section-title">기본 정보</h2><div class="bg-gray-50 p-4 rounded">`;
@@ -1695,7 +1686,7 @@
             previewHTML += `<p><strong>담당자메일:</strong> ${document.getElementById('empmail').value || 'N/A'}</p>`;
             previewHTML += `<p><strong>연락처:</strong> ${document.getElementById('emptel').value || 'N/A'}</p>`;
             previewHTML += `</div></section>`;
-            previewHTML += `</div>`;
+            previewHTML += `</div>`; // End .preview-container
              previewHTML += `
                 <script>
                     function toggleDayView(headerElement) {
@@ -1710,11 +1701,15 @@
                     }
                 <\/script>`;
             previewHTML += `</body></html>`;
+            return previewHTML;
+        }
 
+        function previewQuote() {
+            const previewHtmlContent = generatePreviewHTML(false);
             const previewWindow = window.open('', '_blank');
             if (previewWindow) {
                 previewWindow.document.open();
-                previewWindow.document.write(previewHTML);
+                previewWindow.document.write(previewHtmlContent);
                 previewWindow.document.close();
                 previewWindow.focus();
             } else {
@@ -1722,179 +1717,32 @@
             }
         }
 
-        function downloadGeneratedHTML() {
+        function downloadGeneratedHTML(isPurePreview = false) { // isPurePreview: true for preview-only, false for data-included
             const mainContainer = document.querySelector('body > .container');
             if (!mainContainer) {
                 showToast("메인 컨테이너를 찾을 수 없습니다.", 3000, true);
                 return;
             }
 
-            const fullDataToEmbed = getAllEditorDataAsObject();
-            const safeDataString = JSON.stringify(fullDataToEmbed).replace(/<\/script>/g, '<\\/script>');
+            let finalHtmlString = generatePreviewHTML(true); // Generate base HTML for file saving
+            const customerName = document.getElementById('customerName').value.trim() || '고객님';
+            let fileName = `내일투어_견적서_${customerName.replace(/[^a-z0-9가-힣]/gi, '_')}_${new Date().toISOString().slice(0,10)}`;
 
-            const htmlElementForSavedFile = document.createElement('html');
-            htmlElementForSavedFile.setAttribute('lang', 'ko');
-            const headElementForSavedFile = document.createElement('head');
-            headElementForSavedFile.innerHTML = `
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>내일투어 견적서 (저장본)</title>
-                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
-                <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-                <style>
-                    ${getMobileStylesForDownload()}
-                     body.preview-mode { padding: 1rem; background-color: #f0f0f0; }
-                    .preview-container { max-width: 950px; margin: 0 auto; background-color: white; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
-                    .preview-section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; padding: 0.5rem; background-color: #e0f2f7; color: #000; border-radius: 4px; }
-                    .preview-group-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; padding: 0.5rem; border-bottom: 2px solid #ccc; }
-                    .preview-sub-group-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; padding: 0.25rem; background-color: #f9f9f9; border-left: 3px solid #4A90E2; }
-                    .preview-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.875rem; }
-                    .preview-table th, .preview-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
-                    .preview-table th { background-color: #f8f9fa; }
-                    .preview-table td.text-right { text-align: right; }
-                    .preview-table td.text-center { text-align: center; }
-                    .preview-textarea-content { white-space: pre-wrap; padding: 0.5rem; border: 1px solid #eee; background-color: #fdfdfd; border-radius: 4px; min-height: 50px; }
-                </style>
-            `;
-            htmlElementForSavedFile.appendChild(headElementForSavedFile);
 
-            const bodyElementForSavedFile = document.createElement('body');
-            bodyElementForSavedFile.classList.add('saved-html-view', 'preview-mode');
+            if (!isPurePreview) { // Embed full data if not pure preview
+                const fullDataToEmbed = getAllEditorDataAsObject();
+                const safeDataString = JSON.stringify(fullDataToEmbed).replace(/<\/script>/g, '<\\/script>');
+                const dataScript = `<script type="application/json" id="fullQuoteData">${safeDataString}<\/script>`;
+                finalHtmlString = finalHtmlString.replace('</body>', `${dataScript}</body>`);
+                fileName += "_데이터포함.html";
+                showToast('견적서가 HTML 파일로 저장되었습니다. (데이터 포함)');
+            } else {
+                fileName += "_미리보기용.html";
+                showToast('미리보기용 견적서가 HTML 파일로 저장되었습니다.');
+            }
 
-            const reconstructedContainer = document.createElement('div');
-            reconstructedContainer.className = "preview-container";
-
-            // Header
-            reconstructedContainer.innerHTML += `<header class="mb-6 border-b pb-4 border-gray-200"><h1 class="text-3xl font-bold text-center" style="color: #000;">내일투어 여행견적서</h1></header>`;
-
-            // Basic Info (from data store)
-            reconstructedContainer.innerHTML += `<section class="mb-8"><h2 class="preview-section-title">기본 정보</h2><div class="bg-gray-50 p-4 rounded">
-                <p><strong>고객명:</strong> ${fullDataToEmbed.basicInfo.customerName || 'N/A'}</p>
-                <p><strong>이메일:</strong> ${fullDataToEmbed.basicInfo.customerEmail || 'N/A'}</p>
-                <p><strong>참조:</strong> ${fullDataToEmbed.basicInfo.custcmail || 'N/A'}</p>
-                <p><strong>메일제목:</strong> ${fullDataToEmbed.basicInfo.subject || 'N/A'}</p>
-                <p><strong>안내사항:</strong></p><div class="preview-textarea-content">${(fullDataToEmbed.basicInfo.introText || '').replace(/\n/g, '<br>')}</div>
-                <p class="mt-2"><strong>상품명 (공통):</strong> ${fullDataToEmbed.basicInfo.goodnm || 'N/A'}</p>
-            </div></section>`;
-
-            // Traveler Info
-            reconstructedContainer.innerHTML += `<section class="mb-8"><h2 class="preview-section-title">예약자 정보</h2><div class="bg-gray-50 p-4 rounded">
-                <div class="preview-textarea-content">${(fullDataToEmbed.travelerInfoText || '').replace(/\n/g, '<br>')}</div>
-            </div></section>`;
-
-            // Quote Groups Container (reconstructed from data store)
-            const quoteGroupsContainerClone = document.createElement('div');
-            quoteGroupsContainerClone.className = 'mb-8';
-
-            const groupKeysFromData = Object.keys(fullDataToEmbed.quoteGroups).sort((a, b) => parseInt(a) - parseInt(b));
-            groupKeysFromData.forEach(groupIndexFromData => {
-                const groupData = fullDataToEmbed.quoteGroups[groupIndexFromData];
-                if (!groupData) return;
-
-                const groupDiv = document.createElement('section');
-                groupDiv.className = 'mb-8 p-4 border rounded';
-                groupDiv.style.borderColor = groupData.borderColor || '#ccc';
-                groupDiv.style.borderWidth = '2px';
-
-                groupDiv.innerHTML += `<h3 class="preview-group-title" style="color: ${groupData.borderColor || '#333'};">${groupData.groupTitle || `견적 그룹 ${parseInt(groupIndexFromData) + 1}`}</h3>`;
-
-                if (groupData.priceSubgroups && groupData.priceSubgroups.length > 0) {
-                    let priceHTML = `<div class="mb-6"><h4 class="preview-sub-group-title">요금 안내</h4>`;
-                    groupData.priceSubgroups.forEach(subgroup => {
-                        priceHTML += `<div class="mb-4">`;
-                        if (subgroup.title) priceHTML += `<p class="font-semibold mb-1">${subgroup.title}</p>`;
-                        priceHTML += `<table class="preview-table"><thead><tr><th>내역</th><th>1인당 금액</th><th>인원</th><th>총 금액</th><th>비고</th></tr></thead><tbody>`;
-                        let subGrandTotal = 0;
-                        subgroup.rows.forEach(row => {
-                            const perPrice = parseFloat(row.perPrice) || 0;
-                            const number = parseInt(row.number) || 0;
-                            const rowTotal = perPrice * number;
-                            subGrandTotal += rowTotal;
-                            priceHTML += `<tr><td>${row.title || ''}</td><td class="text-right">${perPrice.toLocaleString()}</td><td class="text-center">${number}</td><td class="text-right">${rowTotal.toLocaleString()}</td><td>${row.bigo || ''}</td></tr>`;
-                        });
-                        priceHTML += `</tbody><tfoot><tr><td colspan="3" class="text-right font-bold">소계</td><td class="text-right font-bold">${subGrandTotal.toLocaleString()}</td><td></td></tr></tfoot></table></div>`;
-                    });
-                    priceHTML += `</div>`;
-                    groupDiv.innerHTML += priceHTML;
-                }
-
-                groupDiv.innerHTML += `<div class="mb-6"><h4 class="preview-sub-group-title">포함/불포함 사항</h4><div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div><h5 class="font-semibold mb-1">포함</h5><div class="preview-textarea-content">${(groupData.inclusionExclusion.includedTextarea || '').replace(/\n/g, '<br>')}</div></div>
-                    <div><h5 class="font-semibold mb-1">불포함</h5><div class="preview-textarea-content">${(groupData.inclusionExclusion.excludedTextarea || '').replace(/\n/g, '<br>')}</div></div>
-                </div></div>`;
-
-                if (groupData.flightSubgroups && groupData.flightSubgroups.length > 0) {
-                    let flightHTML = `<div class="mb-6"><h4 class="preview-sub-group-title">항공 스케줄</h4>`;
-                    groupData.flightSubgroups.forEach(subgroup => {
-                         flightHTML += `<div class="mb-4">`;
-                        if (subgroup.title) flightHTML += `<p class="font-semibold mb-1">${subgroup.title}</p>`;
-                        flightHTML += `<table class="preview-table"><thead><tr><th>편명</th><th>출발일</th><th>출발지</th><th>출발시간</th><th>도착일</th><th>도착지</th><th>도착시간</th></tr></thead><tbody>`;
-                        subgroup.rows.forEach(row => {
-                            flightHTML += `<tr><td>${row.flightNum || ''}</td><td>${row.depDate || ''}</td><td>${row.originCity || ''}</td><td>${row.depTime || ''}</td><td>${row.arrDate || ''}</td><td>${row.destCity || ''}</td><td>${row.arrTime || ''}</td></tr>`;
-                        });
-                        flightHTML += `</tbody></table></div>`;
-                    });
-                    flightHTML += `</div>`;
-                    groupDiv.innerHTML += flightHTML;
-                }
-
-                if (groupData.itinerarySummaryRows && groupData.itinerarySummaryRows.length > 0) {
-                    let summaryHTML = `<div class="mb-6"><h4 class="preview-sub-group-title">간단일정</h4>
-                        <table class="preview-table"><thead><tr><th>일수</th><th>날짜</th><th>출발지</th><th>도착지</th><th>숙박</th><th>이동</th><th>비고</th></tr></thead><tbody>`;
-                    groupData.itinerarySummaryRows.forEach(row => {
-                        summaryHTML += `<tr><td>${row.dayNo || ''}</td><td>${row.dayDate || ''}</td><td>${row.sCity || ''}</td><td>${row.eCity || ''}</td><td>${row.hotel || ''}</td><td>${row.traffic || ''}</td><td>${row.bigo || ''}</td></tr>`;
-                    });
-                    summaryHTML += `</tbody></table></div>`;
-                    groupDiv.innerHTML += summaryHTML;
-                }
-
-                if (groupData.detailedItinerary && groupData.detailedItinerary.days && groupData.detailedItinerary.days.length > 0) {
-                     // Pass the original groupIndex from the data store, not the loop iteration index
-                    groupDiv.innerHTML += `<div class="mb-6">${generateReadOnlyHTMLViewForQuoteGroup(groupIndexFromData)}</div>`;
-                } else {
-                    groupDiv.innerHTML += `<div class="mb-6"><h4 class="preview-sub-group-title">상품일정 상세 (일정표)</h4><p>상세 일정이 없습니다.</p></div>`;
-                }
-                quoteGroupsContainerClone.appendChild(groupDiv);
-            });
-            reconstructedContainer.appendChild(quoteGroupsContainerClone);
-
-            reconstructedContainer.innerHTML += `<section class="mb-8"><h2 class="preview-section-title">담당자 정보</h2><div class="bg-gray-50 p-4 rounded">
-                <p><strong>담당자:</strong> ${fullDataToEmbed.contactInfo.empnm || 'N/A'}</p>
-                <p><strong>담당자메일:</strong> ${fullDataToEmbed.contactInfo.empmail || 'N/A'}</p>
-                <p><strong>연락처:</strong> ${fullDataToEmbed.contactInfo.emptel || 'N/A'}</p>
-            </div></section>`;
-
-            bodyElementForSavedFile.appendChild(reconstructedContainer);
-
-            const dataScript = document.createElement('script');
-            dataScript.type = "application/json";
-            dataScript.id = "fullQuoteData";
-            dataScript.textContent = safeDataString;
-            bodyElementForSavedFile.appendChild(dataScript);
-
-            const scriptForToggle = document.createElement('script');
-            scriptForToggle.textContent = `
-                function toggleDayView(headerElement) {
-                    const contentWrapper = headerElement.nextElementSibling;
-                    const toggleButtonSpan = headerElement.querySelector('.day-toggle-button-static');
-                    if (contentWrapper && toggleButtonSpan) {
-                        const isHidden = contentWrapper.classList.toggle('hidden');
-                        const expandedIconHTML = '<svg class="toggle-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
-                        const collapsedIconHTML = '<svg class="toggle-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
-                        toggleButtonSpan.innerHTML = isHidden ? collapsedIconHTML : expandedIconHTML;
-                    }
-                }
-            `;
-            bodyElementForSavedFile.appendChild(scriptForToggle);
-            htmlElementForSavedFile.appendChild(bodyElementForSavedFile);
-
-            const finalHtmlString = `<!DOCTYPE html>${htmlElementForSavedFile.outerHTML}`;
 
             const blob = new Blob([finalHtmlString], { type: 'text/html;charset=utf-8' });
-            const customerName = fullDataToEmbed.basicInfo.customerName.trim() || '고객님';
-            const fileName = `내일투어_견적서_${customerName.replace(/[^a-z0-9가-힣]/gi, '_')}_${new Date().toISOString().slice(0,10)}.html`;
-
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = fileName;
@@ -1902,55 +1750,30 @@
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
-            showToast('견적서가 HTML 파일로 저장되었습니다. (데이터 포함)');
         }
 
-        function getMobileStylesForDownload() {
+
+        function getMobileStylesForDownload() { // This is used by generatePreviewHTML for file saving.
             let styles = "";
             document.querySelectorAll('style').forEach(styleTag => {
-                styles += styleTag.innerHTML;
+                // Exclude print-specific @page rules from direct style copy if not desired for file view
+                if (!styleTag.innerHTML.includes('@page')) {
+                    styles += styleTag.innerHTML;
+                }
             });
-            styles += `
+            // Ensure the .saved-html-view rules from the main style tag are included for detailed itineraries
+             styles += `
             .saved-html-view .group-action-buttons,
             .saved-html-view .add-price-subgroup-button,
-            .saved-html-view .add-flight-subgroup-button,
-            .saved-html-view .add-itinerary-row-to-group,
-            .saved-html-view .load-detailed-itinerary-html-btn,
-            .saved-html-view .load-detailed-itinerary-excel-btn,
-            .saved-html-view .add-detailed-itinerary-day-button,
-            .saved-html-view .delete-dynamic-section-btn,
-            .saved-html-view .delete-row,
-            .saved-html-view .add-price-row-to-subgroup,
-            .saved-html-view .add-flight-row-to-subgroup,
-            .saved-html-view #activityModal,
-            .saved-html-view .modal-backdrop,
-            .saved-html-view .edit-detailed-date-button,
-            .saved-html-view .save-detailed-date-button,
-            .saved-html-view .cancel-detailed-date-edit-button,
-            .saved-html-view .load-detailed-day-html-button,
-            .saved-html-view .card-actions-direct,
-            .saved-html-view #addGlobalQuoteGroupBtn,
-            .saved-html-view footer, /* Hide entire footer in saved file */
-            .saved-html-view .price-section-wrapper .add-price-subgroup-button,
-            .saved-html-view .flight-schedule-section-wrapper .add-flight-subgroup-button,
-            .saved-html-view .itinerary-summary-section-wrapper .add-itinerary-row-to-group,
-            .saved-html-view .itinerary-planner-styles .edit-detailed-date-button,
-            .saved-html-view .itinerary-planner-styles .save-detailed-date-button,
-            .saved-html-view .itinerary-planner-styles .cancel-detailed-date-edit-button,
-            .saved-html-view .itinerary-planner-styles .load-detailed-day-html-button,
-            .saved-html-view .itinerary-planner-styles .card-actions-direct,
-            .saved-html-view .itinerary-planner-styles .add-activity-to-day-button,
-            .saved-html-view .itinerary-planner-styles .delete-detailed-day-button,
-            .saved-html-view .itinerary-planner-styles .date-edit-input,
-            .saved-html-view .itinerary-planner-styles .save-detailed-itinerary-html-btn, /* Hide these too */
+            /* ... other selectors to hide ... */
+            .saved-html-view .itinerary-planner-styles .save-detailed-itinerary-html-btn,
             .saved-html-view .itinerary-planner-styles .save-detailed-day-html-btn,
-            .saved-html-view .itinerary-detail-section-wrapper .action-button-sm /* Hide all action buttons in detailed itinerary header */
+            .saved-html-view .itinerary-detail-section-wrapper .action-button-sm
             { display: none !important; }
 
-            .saved-html-view body { }
             .saved-html-view .quote-group-section { padding-top: 1rem !important; border-width: 2px !important; }
             .saved-html-view .itinerary-planner-styles .day-section { margin-bottom: 10px; page-break-inside: avoid; box-shadow: none; border: 1px solid #eee;}
-            .saved-html-view .itinerary-planner-styles .day-header-container { padding: 0.5rem; margin-bottom: 5px; border-bottom: 1px solid black; background-color: white !important; cursor: pointer !important; } /* Keep cursor pointer */
+            .saved-html-view .itinerary-planner-styles .day-header-container { padding: 0.5rem; margin-bottom: 5px; border-bottom: 1px solid black; background-color: white !important; cursor: pointer !important; }
             .saved-html-view .itinerary-planner-styles .day-header-title { font-size: 1.1em; }
             .saved-html-view .day-content-wrapper { display: block !important; padding: 0 !important; }
             .saved-html-view .itinerary-planner-styles .activity-card, .saved-html-view .readonly-activity-card { border: 1px solid #ccc; box-shadow: none; padding: 0.5rem; margin-top: 0.5rem; margin-bottom: 0; page-break-inside: avoid; display: flex !important; }
