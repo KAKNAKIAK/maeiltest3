@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모바일 견적서_0526_33_통합</title>
+    <title>모바일 견적서_0527_1</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,19 +13,19 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
         }
-        .custom-orange { color: #000; }
-        .bg-custom-orange { background-color: #e1e1e1; color: #000; }
-        .border-custom-orange { border-color: #ff5a00; }
-        .custom-green { color: #66bb6a; }
-        .bg-custom-green { background-color: #66bb6a; }
-        .border-custom-green { border-color: #66bb6a; }
-        @media print { body { width: 100%; margin: 0; padding: 0; } }
-        .mb-8 { margin-bottom: 1rem; }
-        .w-2\/10 { width: 20%; }
-        .w-3\/10 { width: 34%; }
-        .w-4\/10 { width: 40%; }
+        .custom-orange { color: #000; } /* 사용자 정의 주황색 계열 */
+        .bg-custom-orange { background-color: #e1e1e1; color: #000; } /* 사용자 정의 주황색 배경 */
+        .border-custom-orange { border-color: #ff5a00; } /* 사용자 정의 주황색 테두리 */
+        .custom-green { color: #66bb6a; } /* 사용자 정의 초록색 계열 */
+        .bg-custom-green { background-color: #66bb6a; } /* 사용자 정의 초록색 배경 */
+        .border-custom-green { border-color: #66bb6a; } /* 사용자 정의 초록색 테두리 */
+        @media print { body { width: 100%; margin: 0; padding: 0; } } /* 인쇄 시 설정 */
+        .mb-8 { margin-bottom: 1rem; } /* 하단 여백 */
+        .w-2\/10 { width: 20%; } /* 너비 20% */
+        .w-3\/10 { width: 34%; } /* 너비 34% */
+        .w-4\/10 { width: 40%; } /* 너비 40% */
 
-        .quote-group-section {
+        .quote-group-section { /* 견적 그룹 섹션 스타일 */
             border-width: 2px;
             border-style: solid;
             padding: 1.5rem;
@@ -33,10 +33,10 @@
             border-radius: 8px;
             background-color: #f9f9f9;
             position: relative;
-            padding-top: 4rem;
+            padding-top: 4rem; /* 그룹 액션 버튼 공간 확보 */
         }
 
-        .group-action-buttons {
+        .group-action-buttons { /* 그룹 액션 버튼 컨테이너 */
             position: absolute;
             top: 1rem;
             right: 1rem;
@@ -45,7 +45,7 @@
             z-index: 20;
         }
 
-        .group-action-buttons button {
+        .group-action-buttons button { /* 그룹 액션 버튼 스타일 */
             padding: 0.3rem 0.6rem;
             font-size: 0.75rem;
             line-height: 1;
@@ -128,11 +128,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 8px;
+            padding: 12px 8px; /* 편집 모드 패딩 */
             border-bottom: 1px solid #EEE;
             background-color: #fdfdfd;
             border-radius: 6px 6px 0 0;
-            cursor: grab;
+            cursor: grab; /* Added for sortable */
         }
         .itinerary-planner-styles .day-header-main {
             display: flex;
@@ -156,7 +156,7 @@
             align-items: center;
             gap: 2px;
         }
-        .itinerary-planner-styles .icon-button {
+        .itinerary-planner-styles .icon-button { /* 편집 모드 아이콘 버튼 */
             background: none;
             border: none;
             padding: 4px;
@@ -190,7 +190,7 @@
             margin-top: 16px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             display: flex;
-            cursor: grab;
+            cursor: grab; /* Added for sortable */
         }
         .itinerary-planner-styles .activities-list .activity-card:first-child {
             margin-top: 8px;
@@ -228,12 +228,14 @@
             font-size: 14px;
             color: #374151;
         }
-        .itinerary-planner-styles .card-image {
-            width: 150px;
-            height: 100px;
+        .itinerary-planner-styles .card-image { /* 편집 모드 기본 이미지 스타일 */
+            width: 150px; 
+            height: 100px; 
             object-fit: cover;
             border-radius: 4px;
             margin-top: 8px;
+            margin-bottom: 8px; /* 추가 */
+            background-color: #eee; /* 추가 */
         }
         .itinerary-planner-styles .card-location a {
             color: #007bff;
@@ -293,7 +295,7 @@
             filter: brightness(0.95);
         }
 
-        /* --- ReadOnly, Print, Sortable Styles --- */
+        /* --- Styles from 모바일 추천일정표 for ReadOnly, Print, Sortable --- */
         .readonly-view-header {
             background-color: white;
             border-bottom: 1px solid #E0E0E0;
@@ -301,14 +303,14 @@
             text-align: center;
         }
         .readonly-view-header h1 {
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* text-2xl */
             font-weight: bold;
         }
         .readonly-main-content {
-            max-width: 48rem;
+            max-width: 48rem; /* max-w-3xl */
             margin-left: auto;
             margin-right: auto;
-            padding: 1rem;
+            padding: 1rem; /* p-4 */
         }
         .readonly-activity-card {
             background-color: white;
@@ -320,51 +322,137 @@
             display: flex;
         }
         .readonly-collapse-button {
-            font-size: 0.75rem;
-            color: #4B5563;
-            padding: 0.25rem 0.5rem;
-            border: 1px solid #D1D5DB;
-            border-radius: 0.375rem;
+            font-size: 0.75rem; /* text-xs */
+            color: #4B5563; /* gray-600 */
+            padding: 0.25rem 0.5rem; /* py-1 px-2 */
+            border: 1px solid #D1D5DB; /* border-gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
             cursor: pointer;
         }
         .readonly-collapse-button:hover {
-            color: #1F2937;
-            background-color: #F3F4F6;
+            color: #1F2937; /* gray-800 */
+            background-color: #F3F4F6; /* gray-100 */
         }
-        .day-header-container[onclick] { cursor: pointer; }
+        .day-header-container[onclick] { cursor: pointer; } /* 미리보기에서 클릭 가능하도록 */
         .day-header-container[onclick]:hover { background-color: #f0f0f0; }
 
 
-        .itinerary-planner-styles .day-section.sortable-ghost {
-            background-color: #e0e7ff !important;
-            border: 2px dashed #6366f1 !important;
+        /* Sortable specific styles */
+        .itinerary-planner-styles .day-section.sortable-ghost { /* Ghost class for day sections */
+            background-color: #e0e7ff !important; /* Light blue */
+            border: 2px dashed #6366f1 !important; /* Indigo dashed border */
             opacity: 0.6;
         }
-        .itinerary-planner-styles .activity-card.sortable-ghost {
-            background-color: #f0f9ff !important;
-            border: 1px dashed #38bdf8 !important;
+        .itinerary-planner-styles .activity-card.sortable-ghost { /* Ghost class for activity cards */
+            background-color: #f0f9ff !important; /* Lighter blue */
+            border: 1px dashed #38bdf8 !important; /* Sky blue dashed border */
             opacity: 0.6;
         }
         .itinerary-planner-styles .day-section.sortable-chosen,
-        .itinerary-planner-styles .activity-card.sortable-chosen {
+        .itinerary-planner-styles .activity-card.sortable-chosen { /* For the item being dragged */
             opacity: 0.7;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .itinerary-planner-styles .activity-card:active,
-        .itinerary-planner-styles .day-header-container:active {
+
+        .itinerary-planner-styles .activity-card:active {
+            cursor: grabbing;
+        }
+         .itinerary-planner-styles .day-header-container:active {
             cursor: grabbing;
         }
 
+        /* --- Mobile Preview Adjustments --- */
+        @media (max-width: 767px) {
+            body.preview-mode {
+                padding: 0.25rem; /* Minimal padding on the body for wider content */
+                font-size: 13px;  /* Base font size for mobile preview, adjust if too small/large */
+                -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
+                text-size-adjust: 100%;         /* Prevent font scaling */
+            }
+            .preview-mode .preview-container {
+                padding: 0.5rem;  /* Reduced padding inside the main content container */
+                margin: 0;
+                width: 100%;      /* Make container take full available width */
+                max-width: 100%;  /* Override desktop max-width */
+                border-radius: 0; /* Optional: for a more edge-to-edge feel on mobile */
+                box-shadow: none; /* Optional: remove shadow for cleaner mobile look */
+            }
 
-        /* --- Print and Saved HTML View Specific Styles --- */
+            /* Font size adjustments for general preview elements */
+            .preview-mode .preview-container > header h1 { /* Target the main 견적서 title */
+                font-size: 1.5em; /* Approx 19.5px based on 13px body font */
+            }
+            .preview-mode .preview-section-title {
+                font-size: 1.15em; /* Approx 15px */
+                padding: 0.3em 0.4em;
+                margin-bottom: 0.6em;
+            }
+            .preview-mode .preview-group-title {
+                font-size: 1.1em;  /* Approx 14.3px */
+                padding: 0.3em 0.4em;
+                margin-bottom: 0.5em;
+            }
+            .preview-mode .preview-sub-group-title {
+                font-size: 1.05em; /* Approx 13.65px */
+                padding: 0.25em 0.4em;
+                margin-bottom: 0.4em;
+            }
+            
+            .preview-mode .preview-table {
+                font-size: 12px; /* Specific small size for tables */
+            }
+            .preview-mode .preview-table th, .preview-mode .preview-table td {
+                padding: 0.2em 0.25em; /* Reduced padding in table cells */
+            }
+            
+            .preview-mode .preview-textarea-content {
+                font-size: 0.95em; /* Approx 12.35px */
+                padding: 0.25em;
+                min-height: 30px; /* Smaller min-height for textareas */
+            }
+            .preview-mode p, .preview-mode .bg-gray-50 p { /* General paragraphs */
+                font-size: 0.95em; /* Approx 12.35px */
+                margin-bottom: 0.3em;
+                line-height: 1.4;
+            }
+             .preview-mode .bg-gray-50 div > p { /* For basic info and contact */
+                margin-bottom: 0.3em;
+            }
+
+
+            /* Detailed Itinerary specific adjustments for preview on mobile */
+            /* Using !important to ensure override of other .saved-html-view styles if necessary */
+            .preview-mode .readonly-view-header h1 { font-size: 1.2em !important; /* Approx 15.6px */ }
+            .preview-mode .day-header-container { padding: 0.4rem 0.3rem !important; /* Reduced padding */ }
+            .preview-mode .day-header-title { font-size: 1.05em !important; /* Approx 13.65px */ }
+            .preview-mode .readonly-activity-card, .preview-mode .itinerary-planner-styles .activity-card { padding: 0.4rem !important; margin-bottom: 0.5rem !important; }
+            .preview-mode .card-time-icon-area { width: 45px !important; /* Further reduced width for time/icon area */ font-size: 0.9em !important; /* For text inside this area, if any */ }
+            .preview-mode .card-icon { font-size: 1.15em !important; /* Approx 15px icon */ margin-bottom: 2px !important; }
+            .preview-mode .card-time { font-size: 0.85em !important; /* Approx 11px, check for readability */ font-weight: 500 !important; min-height: auto !important; }
+            .preview-mode .card-details-area { font-size: 0.92em !important; /* Base for descriptions etc. ~12px */ }
+            .preview-mode .card-title { font-size: 1em !important;    /* Approx 13px (relative to card-details-area if nested, or body if not) */ font-weight: 600 !important; margin-bottom: 0.2em !important; }
+            .preview-mode .card-description, .preview-mode .card-location, .preview-mode .card-cost, .preview-mode .card-notes { font-size: 1em !important; /* Relative to card-details-area's font-size (0.92em of body) */ line-height: 1.35 !important; margin-top: 0.15em; }
+            .preview-mode .card-location a { font-size: 1em !important; /* Inherit from .card-location */ }
+            .preview-mode .day-toggle-button-static svg { width: 0.875em !important; height: 0.875em !important; }
+            .preview-mode .readonly-collapse-button { font-size: 0.85em !important; /* Approx 11px */ padding: 0.15em 0.3em !important; }
+            
+            .preview-mode .preview-group-wrapper {
+                /* 모바일에서는 패딩을 더 줄이고 싶다면 여기에 추가적인 padding 값을 지정할 수 있습니다. */
+                /* 예: padding: 0.5rem !important; */
+            }
+        }
+
+        /* Print and Saved HTML View Styles */
         @media print, .saved-html-view {
             .group-action-buttons, .add-price-subgroup-button, .add-flight-subgroup-button, .add-itinerary-row-to-group,
             .load-detailed-itinerary-html-btn, .load-detailed-itinerary-excel-btn, .add-detailed-itinerary-day-button,
             .delete-dynamic-section-btn, .delete-row, .add-price-row-to-subgroup, .add-flight-row-to-subgroup,
-            #activityModal, .modal-backdrop,
-            .edit-detailed-date-button, .save-detailed-date-button, .cancel-detailed-date-edit-button,
+            #activityModal, .modal-backdrop, .edit-detailed-date-button, .save-detailed-date-button, .cancel-detailed-date-edit-button,
             .load-detailed-day-html-button, .card-actions-direct,
-            #addGlobalQuoteGroupBtn, footer button, footer input, /* Global buttons and footer interactive elements */
+            #addGlobalQuoteGroupBtn, footer button, footer input,
+            .price-section-wrapper .add-price-subgroup-button,
+            .flight-schedule-section-wrapper .add-flight-subgroup-button,
+            .itinerary-summary-section-wrapper .add-itinerary-row-to-group,
             .itinerary-planner-styles .edit-detailed-date-button,
             .itinerary-planner-styles .save-detailed-date-button,
             .itinerary-planner-styles .cancel-detailed-date-edit-button,
@@ -373,97 +461,76 @@
             .itinerary-planner-styles .add-activity-to-day-button,
             .itinerary-planner-styles .delete-detailed-day-button,
             .itinerary-planner-styles .date-edit-input,
-            .itinerary-planner-styles .save-detailed-itinerary-html-btn, /* Hide data save/load buttons */
-            .itinerary-planner-styles .save-detailed-day-html-btn,
-            .itinerary-detail-section-wrapper .itinerary-planner-styles .action-button-sm /* Hide all buttons in itinerary header for print/saved */
+            .itinerary-planner-styles .toggle-detailed-day-collapse-button /* 편집 모드 토글 버튼 숨김 */
             { display: none !important; }
 
-            /* Keep toggle button visible in saved-html-view but not print */
-            .saved-html-view .itinerary-planner-styles .toggle-detailed-day-collapse-button {
-                display: flex !important; /* or inline-flex, check original */
-            }
-            @media print {
-                 .itinerary-planner-styles .toggle-detailed-day-collapse-button {
-                    display: none !important;
-                 }
-            }
-
-
-            body, .container, .quote-group-section {
+            body, .container, .quote-group-section:not(.preview-group-wrapper) { /* preview-group-wrapper는 별도 관리 */
                 box-shadow: none !important;
                 border: none !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 max-width: 100% !important;
             }
-            .quote-group-section { padding-top: 1rem !important; }
+            .quote-group-section:not(.preview-group-wrapper) { padding-top: 1rem !important; }
+            .itinerary-planner-styles .day-section { margin-bottom: 10mm; page-break-inside: avoid; box-shadow: none; border: 1px solid #eee;}
 
-            /* Styles from example file for .saved-html-view (and print) */
-            .saved-html-view .day-section, @media print .day-section {
-                margin-bottom: 16px;
-                border: 1px solid #E0E0E0;
-                border-radius: 0.375rem;
-                background-color: #ffffff;
-                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-                page-break-inside: avoid;
+            /* 이미지 기본 스타일 (JS 인라인이 우선 적용되므로, 여기선 여백, 배경색 등만) */
+            .saved-html-view .itinerary-planner-styles .activity-card .card-image,
+            .saved-html-view .readonly-activity-card .card-image { 
+                display: block !important;
+                /* width, height, max-width, min-width, min-height, object-fit 등은 JS에서 !important로 지정 */
+                border-radius: 4px !important;
+                margin-top: 8px !important; 
+                margin-bottom: 8px !important; 
+                background-color: #eee !important; 
             }
-            .saved-html-view .day-header-container, @media print .day-header-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 12px 8px;
-                border-bottom: 1px solid #EEE;
-                background-color: #fdfdfd !important; /* Ensure override */
-                border-radius: 6px 6px 0 0;
-                cursor: pointer !important; /* Keep clickable for saved HTML */
-            }
-             @media print .day-header-container { cursor: default !important; }
 
-            .saved-html-view .day-header-title, @media print .day-header-title {
-                font-size: 18px;
-                font-weight: 600;
+            /* 모바일 화면 (예: 767px 이하)에서 이미지 스타일 오버라이드 */
+            @media (max-width: 767px) { /* Tailwind의 md 브레이크포인트 직전까지 */
+                .saved-html-view .itinerary-planner-styles .activity-card .card-image,
+                .saved-html-view .readonly-activity-card .card-image {
+                    width: 100% !important;       /* 모바일: 너비 100% */
+                    height: auto !important;        /* 모바일: 높이 자동 */
+                    max-width: 100% !important;
+                    min-width: 0 !important; /* 모바일에서 min-width 제한 해제 */
+                    min-height: 0 !important;/* 모바일에서 min-height 제한 해제 */
+                    object-fit: contain !important; /* 모바일: 이미지 전체 보이게 */
+                }
             }
-            .saved-html-view .day-content-wrapper { /* Managed by JS toggle */
-                padding: 0 8px 8px 8px;
-            }
-            .saved-html-view .activity-card, .saved-html-view .readonly-activity-card,
-            @media print .activity-card, @media print .readonly-activity-card {
-                background-color: white;
-                border-radius: 8px;
-                border: 1px solid #E0E0E0;
-                padding: 16px;
-                margin-bottom: 16px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-                display: flex !important; /* Ensure it's flex */
-                page-break-inside: avoid;
-            }
-            .saved-html-view .card-time-icon-area, @media print .card-time-icon-area { width: 100px; }
-            .saved-html-view .card-icon, @media print .card-icon { font-size: 24px; }
-            .saved-html-view .card-time, @media print .card-time { font-size: 14px; }
-            .saved-html-view .card-image, @media print .card-image {
-                width: 100px !important; /* Match example */
-                height: 100px !important; /* Match example */
-                object-fit: cover !important;
-                margin-top: 8px;
-            }
-            .saved-html-view .card-location a, @media print .card-location a { text-decoration: none; color: #007bff; }
-            @media print .card-location a { color: black; }
-            @media print .card-location a::after { content: " (" attr(href) ")"; font-size: 7pt; }
 
 
-            /* Day toggle button specific for saved-html-view (from example) */
-            .saved-html-view .day-header-controls .day-toggle-button-static {
-                display: inline-flex !important; /* Ensure visible in saved view */
-                padding: 0.25rem; /* p-1 */
-                border-radius: 0.25rem; /* rounded */
+            /* saved-html-view 용 day-header-container 스타일 */
+            .saved-html-view .itinerary-planner-styles .day-header-container {
+                padding: 0.75rem 1rem !important; 
+                margin-bottom: 0 !important; 
+                border-bottom: 1px solid #EEE !important; 
+                background-color: white !important;
+                cursor: pointer !important; 
+                display: flex !important; 
+                justify-content: space-between !important; 
+                align-items: center !important; 
             }
-            .saved-html-view .day-toggle-button-static svg {
-                width: 1.25rem; /* w-5 */
-                height: 1.25rem; /* h-5 */
-                color: #4B5563; /* text-gray-600 */
+            .saved-html-view .itinerary-planner-styles .day-header-title {
+                font-size: 1rem !important; 
+                font-weight: 600 !important;
+                color: #1f2937 !important;
             }
-            .saved-html-view .readonly-collapse-button { display: inline-block !important; }
+            .saved-html-view .day-toggle-button-static svg { /* SVG 아이콘 스타일 */
+                width: 1rem; /* w-4 (16px) */
+                height: 1rem; /* h-4 (16px) */
+                color: #4B5563; /* gray-600 */
+                stroke-width: 2; /* JavaScript 내 SVG stroke-width와 일치 */
+            }
 
+            .itinerary-planner-styles .activity-card, .readonly-activity-card { border: 1px solid #ccc; box-shadow: none; padding: 3mm; margin-top: 3mm; margin-bottom: 0; page-break-inside: avoid; display: flex !important; cursor: default !important; }
+            .itinerary-planner-styles .activities-list .activity-card:first-child,
+            .itinerary-planner-styles .activities-list .readonly-activity-card:first-child { margin-top: 0; }
+            .itinerary-planner-styles .card-time-icon-area { width: 20mm; flex-direction: column; }
+            .itinerary-planner-styles .card-icon { font-size: 12pt; margin-bottom: 1mm; }
+            .itinerary-planner-styles .card-time { font-size: 9pt; font-weight: bold; min-height: 11pt; }
+            .itinerary-planner-styles .card-details-area { flex-grow: 1; } .itinerary-planner-styles .card-title { font-size: 11pt; font-weight: bold; } .itinerary-planner-styles .card-description, .itinerary-planner-styles .card-location, .itinerary-planner-styles .card-cost, .itinerary-planner-styles .card-notes { font-size: 9pt; }
+            .itinerary-planner-styles .card-location a { text-decoration: none; color: black; }
+            .itinerary-planner-styles .card-location a::after { content: " (" attr(href) ")"; font-size: 7pt; }
 
             @page {
                 size: A4 portrait;
@@ -475,11 +542,61 @@
             }
             body::before { display: none; content: attr(data-document-title) attr(data-creation-date); }
         }
+        /* Specific overrides for print media */
         @media print {
-             .itinerary-planner-styles .card-image, .saved-html-view .card-image { display: none !important; } /* Hide images for print to save ink/space */
+             .itinerary-planner-styles .card-image,
+             .readonly-activity-card .card-image {
+                 display: none !important; /* 인쇄 시에는 이미지 숨김 */
+             }
              .readonly-collapse-button { display: none !important; }
-             .saved-html-view .day-header-controls .day-toggle-button-static { display: none !important; }
+             .itinerary-planner-styles .delete-detailed-day-button,
+             .itinerary-planner-styles .toggle-detailed-day-collapse-button
+             { display: none !important; }
+            .save-detailed-itinerary-html-btn, /* These are for interactive saving, not print */
+            .save-detailed-day-html-btn {
+                display: none !important;
+            }
         }
+        
+        .saved-html-view .itinerary-planner-styles .day-header-controls .toggle-detailed-day-collapse-button
+         { display: none !important; }
+
+        .saved-html-view .itinerary-planner-styles .day-header-controls .delete-detailed-day-button,
+        .saved-html-view .itinerary-planner-styles .day-header-controls .edit-detailed-date-button,
+        .saved-html-view .itinerary-planner-styles .day-header-controls .load-detailed-day-html-button
+        { display: none !important; }
+        .saved-html-view .save-detailed-itinerary-html-btn,
+        .saved-html-view .save-detailed-day-html-btn {
+            display: inline-flex !important;
+        }
+
+        /* Styles for preview window */
+        .preview-mode { padding: 1rem; background-color: #f0f0f0; }
+        .preview-container { max-width: 950px; margin: 0 auto; background-color: white; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        .preview-section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; padding: 0.5rem; background-color: #e0f2f7; color: #000; border-radius: 4px; }
+        .preview-group-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; padding: 0.5rem; border-bottom: 2px solid #ccc; }
+        .preview-sub-group-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; padding: 0.25rem; background-color: #f9f9f9; border-left: 3px solid #4A90E2; }
+        .preview-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.875rem; }
+        .preview-table th, .preview-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        .preview-table th { background-color: #f8f9fa; }
+        .preview-table td.text-right { text-align: right; }
+        .preview-table td.text-center { text-align: center; }
+        .preview-textarea-content { white-space: pre-wrap; padding: 0.5rem; border: 1px solid #eee; background-color: #fdfdfd; border-radius: 4px; min-height: 50px; }
+        .preview-detailed-itinerary-title { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; padding: 0.5rem; background-color: #e1e1e1; color: #000; border-radius: 4px; }
+        
+        /* 견적 그룹 테두리 및 소그룹 제목 왼쪽 선 제거 (미리보기용) */
+        .preview-mode .preview-group-wrapper {
+            border: none !important;
+            padding: 1.5rem !important; /* 편집기(.quote-group-section)와 동일한 패딩으로 조정 */
+            margin-bottom: 2rem !important; /* 편집기와 동일한 마진으로 조정 */
+            background-color: transparent  !important; /* 편집기와 동일한 배경색 유지 (선택적) */
+            border-radius: 8px !important; /* 편집기와 동일한 둥근 모서리 유지 (선택적) */
+        }
+        .preview-mode .preview-sub-group-title {
+            border-left: none !important;
+        }
+
+
     </style>
 </head>
 <body class="bg-white p-4">
@@ -914,7 +1031,7 @@
                 activitiesListContainer.appendChild(card);
             });
 
-            if (activitiesListContainer && activitiesListContainer.children.length >= 0) {
+            if (activitiesListContainer && activitiesListContainer.children.length >= 0) { // Allow empty list to be sortable target
                  if (activitiesListContainer.sortableInstance) activitiesListContainer.sortableInstance.destroy();
                 activitiesListContainer.sortableInstance = new Sortable(activitiesListContainer, {
                     group: `shared-activities-group-${groupIndex}`, animation: 150, handle: '.activity-card', ghostClass: 'sortable-ghost', chosenClass: 'sortable-chosen',
@@ -1054,7 +1171,13 @@
             itineraryData.days.forEach((day, dayIdx) => {
                 let activitiesHTML = '';
                 day.activities.forEach(activity => {
-                    let imageHTML = activity.imageUrl ? `<img src="${activity.imageUrl}" alt="${activity.title || '활동 이미지'}" class="card-image" onerror="this.style.display='none';">` : '';
+                    // 웹 화면용 고정 크기를 인라인 스타일로 지정
+                    const webImageStyle = "display: block !important; width: 240px !important; height: 160px !important; object-fit: cover !important; border-radius: 4px !important; margin-top: 8px !important; margin-bottom: 8px !important; background-color: #eee !important;";
+                    
+                    let imageHTML = activity.imageUrl 
+                        ? `<img src="${activity.imageUrl}" alt="${activity.title || '활동 이미지'}" class="card-image" style="${webImageStyle}" onerror="this.style.display='none';">` 
+                        : '';
+                    
                     activitiesHTML += `
                         <div class="readonly-activity-card">
                             <div class="card-time-icon-area">
@@ -1067,54 +1190,54 @@
                                 ${activity.cost ? `<div class="card-cost">💰 ${activity.cost}</div>` : ''}
                                 ${activity.notes ? `<div class="card-notes">📝 ${activity.notes}</div>` : ''}</div></div>`;});
                 const dayHeaderId = `day-header-readonly-trip-${groupIndex}-${dayIdx}`;
-                const isDayCollapsedForView = true; // Default to collapsed for preview/saved HTML
+                const isDayCollapsedInSavedView = true; 
 
-                const expandedIcon = '<svg class="toggle-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>';
-                const collapsedIcon = '<svg class="toggle-icon w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+                const collapsedStateIconSVG = `<svg class="toggle-icon w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>`; 
+                const expandedStateIconSVG = `<svg class="toggle-icon w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>`; 
+                
+                const initialIconHTML = isDayCollapsedInSavedView ? collapsedStateIconSVG : expandedStateIconSVG;
+                
                 daysHTML += `
                     <div class="day-section bg-white shadow-sm rounded-md">
                         <div class="day-header-container" id="${dayHeaderId}" onclick="toggleDayView(this)">
                             <div class="day-header-main"><h2 class="day-header-title">${formatDateForDisplay(day.date, dayIdx + 1)}</h2></div>
-                            <div class="day-header-controls">
-                                <span class="day-toggle-button-static p-1 rounded">
-                                     ${isDayCollapsedForView ? collapsedIcon : expandedIcon}
-                                </span>
-                            </div>
+                            <div class="day-header-controls"><span class="day-toggle-button-static p-1 rounded flex items-center justify-center">${initialIconHTML}</span></div>
                         </div>
-                        <div class="day-content-wrapper ${isDayCollapsedForView ? 'hidden' : ''}">
+                        <div class="day-content-wrapper ${isDayCollapsedInSavedView ? 'hidden' : ''}">
                             <div class="activities-list pt-3">${activitiesHTML}</div>
-                             <div class="text-right p-2 mt-2">
-                                <button type="button" class="readonly-collapse-button" onclick="document.getElementById('${dayHeaderId}').click(); event.stopPropagation();">
-                                    일차 접기
-                                </button>
-                            </div>
-                        </div>
-                    </div>`;
-            });
+                             <div class="text-right p-2 mt-2"><button type="button" class="readonly-collapse-button" onclick="document.getElementById('${dayHeaderId}').click(); event.stopPropagation();">일차 접기</button></div></div></div>`;});
             return `<header class="readonly-view-header"><h1>${itineraryData.title || '여행 일정표'}</h1></header><main class="readonly-main-content saved-html-view"><div id="daysContainerReadOnly_${groupIndex}">${daysHTML}</div></main>`;
         }
-
+        function generateReadOnlyDayViewForQuoteGroup(groupIndex, dayIndex) {
+            const groupData = quoteGroupDataStore[groupIndex]; if (!groupData || !groupData.detailedItinerary || !groupData.detailedItinerary.days[dayIndex]) return "";
+            const dayData = groupData.detailedItinerary.days[dayIndex]; const dayNumberForView = dayIndex + 1; let activitiesHTML = '';
+            dayData.activities.forEach(activity => {
+                let imageHTML = activity.imageUrl ? `<img src="${activity.imageUrl}" alt="${activity.title || '활동 이미지'}" class="card-image" onerror="this.style.display='none';">` : '';
+                activitiesHTML += `
+                    <div class="readonly-activity-card">
+                        <div class="card-time-icon-area">
+                             ${activity.icon ? `<div class="card-icon">${activity.icon}</div>` : '<div class="card-icon" style="height: 28.8px;"></div>'}
+                            <div class="card-time">${formatTimeToHHMM(activity.time)}</div></div>
+                        <div class="card-details-area">
+                            <div class="card-title">${activity.title || ''}</div>
+                            ${activity.description ? `<div class="card-description">${activity.description}</div>` : ''} ${imageHTML}
+                            ${activity.locationLink ? `<div class="card-location">📍 <a href="${activity.locationLink}" target="_blank" rel="noopener noreferrer">위치 보기</a></div>` : ''}
+                            ${activity.cost ? `<div class="card-cost">💰 ${activity.cost}</div>` : ''}
+                            ${activity.notes ? `<div class="card-notes">📝 ${activity.notes}</div>` : ''}</div></div>`;});
+            const dayHeaderId = `day-header-readonly-single-${groupIndex}-${dayIndex}`;
+            return `<header class="readonly-view-header"><h1>DAY ${dayNumberForView} : ${new Date(dayData.date + 'T00:00:00').toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</h1></header><main class="readonly-main-content saved-html-view"><div class="day-section bg-white shadow-sm rounded-md"><div class="day-header-container" id="${dayHeaderId}"><div class="day-header-main"><h2 class="day-header-title">${formatDateForDisplay(dayData.date, dayNumberForView)}</h2></div></div><div class="day-content-wrapper"><div class="activities-list pt-3">${activitiesHTML}</div></div></div></main>`;
+        }
         function handleSaveDetailedItineraryAsHtml(groupIndex) {
             const groupData = quoteGroupDataStore[groupIndex]; if (!groupData || !groupData.detailedItinerary) { showToast('저장할 상세 일정 데이터가 없습니다.', 3000, true); return; }
             const itineraryDataToSave = JSON.parse(JSON.stringify(groupData.detailedItinerary));
-            itineraryDataToSave.days.forEach(day => day.isCollapsed = true); // Ensure data saved with collapsed state
+            itineraryDataToSave.days.forEach(day => day.isCollapsed = true); 
             const itineraryDataString = JSON.stringify(itineraryDataToSave); const safeItineraryDataString = itineraryDataString.replace(/<\/script>/g, '<\\/script>');
-            const readOnlyViewHTML = generateReadOnlyHTMLViewForQuoteGroup(groupIndex);
-            let styles = "";
-            document.querySelectorAll('style').forEach(styleTag => { styles += styleTag.innerHTML; });
-            // Add styles specific to the provided example file for saved HTML
-            styles += `
-                .saved-html-view body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FA; }
-                .saved-html-view .day-header-container[onclick] { cursor: pointer; }
-                .saved-html-view .day-header-container[onclick]:hover { background-color: #f0f0f0; }
-                .saved-html-view .itinerary-planner-styles .card-image { width: 100px !important; height: 100px !important; object-fit: cover !important; }
-                .saved-html-view .day-toggle-button-static svg { width: 1.25rem; height: 1.25rem; color: #4B5563; }
-            `;
-
+            const readOnlyViewHTML = generateReadOnlyHTMLViewForQuoteGroup(groupIndex); 
+            let styles = ""; document.querySelectorAll('style').forEach(styleTag => { styles += styleTag.innerHTML; });
             const fontAwesomeLink = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">';
-            const tailwindCDN = '<link href="https://cdn.tailwindcss.com/2.2.19/dist/tailwind.min.css" rel="stylesheet">'; // Using existing Tailwind
+            const tailwindCDN = '<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">';
             const googleFontLink = '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">';
-            const htmlContent = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>견적그룹 상세일정: ${itineraryDataToSave.title || '일정표'}</title>${tailwindCDN}${fontAwesomeLink}${googleFontLink}<style>${styles}</style></head><body class="text-gray-800 saved-html-view">${readOnlyViewHTML}<script type="application/json" id="embeddedTripData">${safeItineraryDataString}<\/script><script>function toggleDayView(headerElement) { const contentWrapper = headerElement.nextElementSibling; const toggleButtonSpan = headerElement.querySelector('.day-toggle-button-static svg'); if (contentWrapper && toggleButtonSpan) { const isHidden = contentWrapper.classList.toggle('hidden'); const expandedIconHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>'; const collapsedIconHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>'; toggleButtonSpan.innerHTML = isHidden ? collapsedIconHTML : expandedIconHTML;}}<\/script></body></html>`;
+            const htmlContent = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>견적그룹 상세일정: ${itineraryDataToSave.title || '일정표'}</title>${tailwindCDN}${fontAwesomeLink}${googleFontLink}<style>body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FA; }${styles}.saved-html-view .day-header-container[onclick] { cursor: pointer; }.saved-html-view .day-header-container[onclick]:hover { background-color: #f0f0f0; }</style></head><body class="text-gray-800 saved-html-view preview-mode">${readOnlyViewHTML}<script type="application/json" id="embeddedTripData">${safeItineraryDataString}<\/script><script>function toggleDayView(headerElement) { const contentWrapper = headerElement.nextElementSibling; const toggleButtonSpan = headerElement.querySelector('.day-toggle-button-static'); if (contentWrapper && toggleButtonSpan) { const isHidden = contentWrapper.classList.toggle('hidden'); const collapsedIconHTML = '<svg class="toggle-icon w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>'; const expandedIconHTML = '<svg class="toggle-icon w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>'; toggleButtonSpan.innerHTML = isHidden ? collapsedIconHTML : expandedIconHTML; } }<\/script></body></html>`;
             const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
             const groupTitle = groupData.groupTitle ? groupData.groupTitle.replace(/[^a-z0-9가-힣]/gi, '_') : `그룹${groupIndex}`;
             const fileName = `상세일정_${groupTitle}_${dateToYyyyMmDd(new Date())}.html`;
@@ -1123,23 +1246,15 @@
             showToast('상세 일정이 HTML 파일로 저장되었습니다.');
         }
         function handleSaveDetailedDayAsHtml(groupIndex, dayIndex) {
-            // This function remains largely the same as its output is for a single day,
-            // and the primary concern was the multi-day itinerary view.
             const groupData = quoteGroupDataStore[groupIndex]; if (!groupData || !groupData.detailedItinerary || !groupData.detailedItinerary.days[dayIndex]) { showToast('저장할 날짜 데이터가 없습니다.', 3000, true); return; }
             const dayDataToSave = JSON.parse(JSON.stringify(groupData.detailedItinerary.days[dayIndex]));
             const dayDataString = JSON.stringify(dayDataToSave); const safeDayDataString = dayDataString.replace(/<\/script>/g, '<\\/script>');
-            const readOnlyDayViewHTML = generateReadOnlyDayViewForQuoteGroup(groupIndex, dayIndex); //This function will use the updated styles.
+            const readOnlyDayViewHTML = generateReadOnlyDayViewForQuoteGroup(groupIndex, dayIndex);
             let styles = ""; document.querySelectorAll('style').forEach(styleTag => { styles += styleTag.innerHTML; });
-             styles += `
-                .saved-html-view body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FA; }
-                .saved-html-view .readonly-view-header h1 { font-size: 1.25rem; }
-                .saved-html-view .day-content-wrapper { display: block !important; }
-                .saved-html-view .itinerary-planner-styles .card-image { width: 100px !important; height: 100px !important; object-fit:cover !important; }
-            `;
             const fontAwesomeLink = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">';
-            const tailwindCDN = '<link href="https://cdn.tailwindcss.com/2.2.19/dist/tailwind.min.css" rel="stylesheet">';
+            const tailwindCDN = '<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">';
             const googleFontLink = '<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">';
-            const htmlContent = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DAY ${dayIndex + 1} 상세 (${dayDataToSave.date})</title>${tailwindCDN}${fontAwesomeLink}${googleFontLink}<style>${styles}</style></head><body class="text-gray-800 saved-html-view">${readOnlyDayViewHTML}<script type="application/json" id="embeddedTripDayData">${safeDayDataString}<\/script></body></html>`;
+            const htmlContent = `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DAY ${dayIndex + 1} 상세 (${dayDataToSave.date})</title>${tailwindCDN}${fontAwesomeLink}${googleFontLink}<style>body { font-family: 'Noto Sans KR', sans-serif; background-color: #F8F9FA; }${styles}.readonly-view-header h1 { font-size: 1.25rem; }/* .saved-html-view .day-content-wrapper { display: block !important; } */ .saved-html-view .itinerary-planner-styles .day-header-controls .day-toggle-button-static { display: none !important; }</style></head><body class="text-gray-800 saved-html-view preview-mode">${readOnlyDayViewHTML}<script type="application/json" id="embeddedTripDayData">${safeDayDataString}<\/script></body></html>`;
             const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
             const groupTitle = groupData.groupTitle ? groupData.groupTitle.replace(/[^a-z0-9가-힣]/gi, '_') : `그룹${groupIndex}`;
             const fileName = `DAY${dayIndex + 1}_${groupTitle}_${dayDataToSave.date}.html`;
@@ -1149,8 +1264,6 @@
         }
 
         // --- File Loading ---
-        // These functions (handleLoadDetailedItineraryFromHtml, etc.) should remain largely the same
-        // as they parse data, and the data structure hasn't fundamentally changed.
         function handleLoadDetailedItineraryFromHtml(groupIndex, file) {
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -1364,7 +1477,7 @@
                     const field = target.dataset.field; if (quoteGroupDataStore[groupIndex].itinerarySummaryRows[rowIndex]) quoteGroupDataStore[groupIndex].itinerarySummaryRows[rowIndex][field] = target.value;
                 } else if (target.matches('input[name^="detailed_itinerary_title"]')) { if (quoteGroupDataStore[groupIndex] && quoteGroupDataStore[groupIndex].detailedItinerary) quoteGroupDataStore[groupIndex].detailedItinerary.title = target.value;}
 
-                if (target.matches('.price-per-person, .person-count, input[name*="p_title"], input[name*="p_bigo"]')) {
+                if (target.matches('.price-per-person, .person-count, input[name*="p_title"], input[name*="p_bigo"]')) { // More flexible selector for p_title and p_bigo
                     const subgroupElement = target.closest('.price-subgroup');
                     if (subgroupElement) {
                         const rowElement = target.closest('tr');
@@ -1576,7 +1689,7 @@
                         groupData.detailedItinerary.days.forEach(day => {
                             if (!day.activities) day.activities = [];
                             day.activities.forEach(activity => { if (!activity.id) activity.id = generateId(); });
-                            if (typeof day.isCollapsed === 'undefined') day.isCollapsed = true; // Default to collapsed for loaded data
+                            if (typeof day.isCollapsed === 'undefined') day.isCollapsed = false;
                             if (typeof day.editingDate === 'undefined') day.editingDate = false;
                         });
 
@@ -1598,133 +1711,31 @@
         }
 
         function manualParseAndRestore(doc) {
+            // This is a placeholder for more complex DOM parsing if no JSON data is found.
+            // It's highly recommended to rely on the embedded JSON data.
             showToast("HTML에서 부분적으로 데이터를 복원했습니다 (제한적 기능).", 4000);
         }
 
         function generatePreviewHTML(isForFileSave = false) {
             let previewHTML = ``;
-             previewHTML += `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${isForFileSave ? '내일투어 견적서' : '견적서 미리보기'}</title>`;
+            if (isForFileSave) {
+                 previewHTML += `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>내일투어 견적서</title>`;
+            } else {
+                 previewHTML += `<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>견적서 미리보기</title>`;
+            }
 
-            previewHTML += `<link href="https://cdn.tailwindcss.com/2.2.19/dist/tailwind.min.css" rel="stylesheet">`;
+            previewHTML += `<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">`;
             previewHTML += `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">`;
             previewHTML += `<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">`;
             previewHTML += `<style>`;
-            // Add base styles from current document, then override/add specific preview/saved styles
-            document.querySelectorAll('style').forEach(styleTag => {
-                // Exclude print-specific @page rules if not desired for file view directly
-                if(!styleTag.innerHTML.includes("@page")){
-                    previewHTML += styleTag.innerHTML;
-                }
-            });
-            // Add styles to match the example file for saved/preview detailed itinerary
+            document.querySelectorAll('style').forEach(styleTag => { previewHTML += styleTag.innerHTML; });
+            // Ensure preview-specific styles are applied, and saved-html-view for detailed itinerary parts
             previewHTML += `
-                /* Styles to match example file's look and feel for detailed itinerary */
-                body.preview-mode.saved-html-view, .saved-html-view body { /* Ensure high specificity */
-                    font-family: 'Noto Sans KR', sans-serif;
-                    background-color: #F8F9FA; /* Match example background */
-                }
-                .preview-mode .preview-container, .saved-html-view .preview-container {
-                    max-width: 950px; /* Your original container max-width */
-                    margin: 0 auto;
-                    background-color: white;
-                    padding: 1.5rem; /* Tailwind p-6 */
-                    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-                    border-radius: 8px; /* Tailwind rounded-lg */
-                }
-                .saved-html-view .readonly-view-header {
-                    background-color: white;
-                    border-bottom: 1px solid #E0E0E0;
-                    padding: 1rem;
-                    text-align: center;
-                }
-                .saved-html-view .readonly-view-header h1 {
-                    font-size: 1.5rem; /* text-2xl */
-                    font-weight: bold;
-                }
-                .saved-html-view .readonly-main-content {
-                    max-width: 48rem; /* max-w-3xl from example */
-                    margin-left: auto;
-                    margin-right: auto;
-                    padding: 1rem; /* p-4 from example */
-                }
-                .saved-html-view .day-section {
-                    margin-bottom: 16px;
-                    border: 1px solid #E0E0E0; /* Match example */
-                    border-radius: 0.375rem; /* rounded-md */
-                    background-color: #ffffff;
-                    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-                }
-                .saved-html-view .day-header-container {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 12px 8px;
-                    border-bottom: 1px solid #EEE;
-                    background-color: #fdfdfd;
-                    border-radius: 6px 6px 0 0;
-                    cursor: pointer; /* Keep for saved HTML */
-                }
-                .saved-html-view .day-header-title {
-                    font-size: 18px;
-                    font-weight: 600;
-                }
-                .saved-html-view .day-header-controls .day-toggle-button-static {
-                    display: inline-flex !important; /* Make sure this is visible in saved HTML */
-                    padding: 0.25rem;
-                }
-                .saved-html-view .day-toggle-button-static svg {
-                    width: 1.25rem; height: 1.25rem; color: #4B5563;
-                }
-                .saved-html-view .day-content-wrapper {
-                    padding: 0 8px 8px 8px;
-                }
-                .saved-html-view .readonly-activity-card {
-                    background-color: white;
-                    border-radius: 8px;
-                    border: 1px solid #E0E0E0;
-                    padding: 16px;
-                    margin-bottom: 16px;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-                    display: flex;
-                }
-                .saved-html-view .card-time-icon-area { width: 100px; }
-                .saved-html-view .card-icon { font-size: 24px; margin-bottom: 4px; }
-                .saved-html-view .card-time { font-size: 14px; font-weight: bold; min-height: 21px; }
-                .saved-html-view .card-image {
-                    width: 100px !important; /* Match example */
-                    height: 100px !important; /* Match example */
-                    object-fit: cover !important;
-                    border-radius: 4px;
-                    margin-top: 8px;
-                }
-                .saved-html-view .readonly-collapse-button {
-                    font-size: 0.75rem; color: #4B5563; padding: 0.25rem 0.5rem;
-                    border: 1px solid #D1D5DB; border-radius: 0.375rem; cursor: pointer;
-                    display: inline-block !important; /* Ensure visible */
-                }
-                .saved-html-view .readonly-collapse-button:hover { color: #1F2937; background-color: #F3F4F6; }
-
-                /* Hide elements not relevant for pure preview/saved file */
-                .saved-html-view .group-action-buttons, .saved-html-view .add-price-subgroup-button, /* etc. */
-                .saved-html-view #addGlobalQuoteGroupBtn, .saved-html-view footer button, .saved-html-view footer input,
-                .saved-html-view .itinerary-planner-styles .action-button-sm:not(.save-detailed-itinerary-html-btn):not(.save-detailed-day-html-btn), /* Keep save buttons for data-included version if logic desires */
-                .saved-html-view .itinerary-planner-styles .edit-detailed-date-button, /* and other edit buttons */
-                .saved-html-view .itinerary-planner-styles .card-actions-direct
-                { display: none !important; }
-            `;
-            if (isPurePreview) { // If it's for a "preview-only" HTML file
-                previewHTML += `
-                .saved-html-view .itinerary-planner-styles .save-detailed-itinerary-html-btn,
-                .saved-html-view .itinerary-planner-styles .save-detailed-day-html-btn {
-                    display: none !important;
-                }
-                `;
-            }
-
-            previewHTML += `</style></head><body class="preview-mode saved-html-view">`;
+                body.preview-mode { padding: 1rem; background-color: #f0f0f0; }
+                .preview-container { max-width: 950px; margin: 0 auto; background-color: white; padding: 1.5rem; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; }
+            </style></head><body class="preview-mode saved-html-view">`; // Add saved-html-view for consistency
             previewHTML += `<div class="preview-container">`;
-            previewHTML += `<header class="mb-6 border-b pb-4 border-gray-200"><h1 class="text-3xl font-bold text-center" style="color: #000;">내일투어 여행견적서 ${isForFileSave && !isPurePreview ? '' : (isForFileSave && isPurePreview ? '(미리보기용 저장본)' : '(미리보기)')}</h1></header>`;
-
+            previewHTML += `<header class="mb-6 border-b pb-4 border-gray-200"><h1 class="text-3xl font-bold text-center" style="color: #000;">내일투어 여행견적서 ${isForFileSave ? '' : '(미리보기)'}</h1></header>`;
 
             // 1. Basic Info
             previewHTML += `<section class="mb-8"><h2 class="preview-section-title">기본 정보</h2><div class="bg-gray-50 p-4 rounded">`;
@@ -1747,7 +1758,12 @@
                 const groupData = quoteGroupDataStore[groupIndex];
                 if (!groupData) return;
 
-                previewHTML += `<section class="mb-8 p-4 border rounded" style="border-color: ${groupData.borderColor || '#ccc'}; border-width: 2px;">`;
+                // *** JavaScript 수정 지점 ***
+                // 기존: previewHTML += `<section class="mb-8 p-4 border rounded" style="border-color: ${groupData.borderColor || '#ccc'}; border-width: 2px;">`;
+                // 수정 후:
+                previewHTML += `<section class="preview-group-wrapper mb-8 p-4 border rounded" style="border-color: ${groupData.borderColor || '#ccc'}; border-width: 2px;">`;
+
+
                 previewHTML += `<h3 class="preview-group-title" style="color: ${groupData.borderColor || '#333'};">${groupData.groupTitle || `견적 그룹 ${parseInt(groupIndex) + 1}`}</h3>`;
 
                 if (groupData.priceSubgroups && groupData.priceSubgroups.length > 0) {
@@ -1801,7 +1817,7 @@
                 }
 
                 if (groupData.detailedItinerary && groupData.detailedItinerary.days && groupData.detailedItinerary.days.length > 0) {
-                    previewHTML += `<div class="mb-6">`; // Wrapper for the detailed itinerary block
+                    previewHTML += `<div class="mb-6">`;
                     previewHTML += generateReadOnlyHTMLViewForQuoteGroup(groupIndex);
                     previewHTML += `</div>`;
                 } else {
@@ -1816,29 +1832,23 @@
             previewHTML += `<p><strong>연락처:</strong> ${document.getElementById('emptel').value || 'N/A'}</p>`;
             previewHTML += `</div></section>`;
             previewHTML += `</div>`; // End .preview-container
-
-            // Add the toggleDayView script directly into the generated HTML
-            previewHTML += `
+             previewHTML += `
                 <script>
                     function toggleDayView(headerElement) {
                         const contentWrapper = headerElement.nextElementSibling;
-                        const toggleButtonSpan = headerElement.querySelector('.day-toggle-button-static svg'); // Target the SVG inside the span
+                        const toggleButtonSpan = headerElement.querySelector('.day-toggle-button-static');
+                        
                         if (contentWrapper && toggleButtonSpan) {
                             const isHidden = contentWrapper.classList.toggle('hidden');
-                            // SVG paths for collapsed/expanded states (FontAwesome style chevrons)
-                            const collapsedIconPath = "M9 5l7 7-7 7"; // fa-chevron-right like
-                            const expandedIconPath = "M19 9l-7 7-7-7"; // fa-chevron-down like
+                            // SVG 아이콘 문자열 (generateReadOnlyHTMLViewForQuoteGroup 함수와 일치시켜야 함)
+                            const collapsedIconHTML = '<svg class="toggle-icon w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>'; // 오른쪽 꺾쇠
+                            const expandedIconHTML = '<svg class="toggle-icon w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>'; // 아래쪽 꺾쇠
                             
-                            // Create a new path element or update existing one
-                            let pathElement = toggleButtonSpan.querySelector('path');
-                            if (!pathElement) { // If no path, create one (though it should exist from generateReadOnlyHTMLViewForQuoteGroup)
-                                pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                                pathElement.setAttribute("stroke-linecap", "round");
-                                pathElement.setAttribute("stroke-linejoin", "round");
-                                pathElement.setAttribute("stroke-width", "2");
-                                toggleButtonSpan.appendChild(pathElement);
+                            if (isHidden) {
+                                toggleButtonSpan.innerHTML = collapsedIconHTML;
+                            } else {
+                                toggleButtonSpan.innerHTML = expandedIconHTML;
                             }
-                            pathElement.setAttribute("d", isHidden ? collapsedIconPath : expandedIconPath);
                         }
                     }
                 <\/script>`;
@@ -1846,9 +1856,8 @@
             return previewHTML;
         }
 
-
         function previewQuote() {
-            const previewHtmlContent = generatePreviewHTML(false); // false means it's for a popup window, not a file save
+            const previewHtmlContent = generatePreviewHTML(false);
             const previewWindow = window.open('', '_blank');
             if (previewWindow) {
                 previewWindow.document.open();
@@ -1860,19 +1869,19 @@
             }
         }
 
-        function downloadGeneratedHTML(isPurePreview = false) {
+        function downloadGeneratedHTML(isPurePreview = false) { // isPurePreview: true for preview-only, false for data-included
             const mainContainer = document.querySelector('body > .container');
             if (!mainContainer) {
                 showToast("메인 컨테이너를 찾을 수 없습니다.", 3000, true);
                 return;
             }
 
-            let finalHtmlString = generatePreviewHTML(true); // true indicates it's for file saving context
+            let finalHtmlString = generatePreviewHTML(true); // Generate base HTML for file saving
             const customerName = document.getElementById('customerName').value.trim() || '고객님';
             let fileName = `내일투어_견적서_${customerName.replace(/[^a-z0-9가-힣]/gi, '_')}_${new Date().toISOString().slice(0,10)}`;
 
 
-            if (!isPurePreview) {
+            if (!isPurePreview) { // Embed full data if not pure preview
                 const fullDataToEmbed = getAllEditorDataAsObject();
                 const safeDataString = JSON.stringify(fullDataToEmbed).replace(/<\/script>/g, '<\\/script>');
                 const dataScript = `<script type="application/json" id="fullQuoteData">${safeDataString}<\/script>`;
@@ -1895,11 +1904,59 @@
             URL.revokeObjectURL(link.href);
         }
 
-        // getMobileStylesForDownload is no longer strictly needed as styles are embedded in generatePreviewHTML
-        // but can be kept if there's a desire to manage styles separately for other purposes.
-        function getMobileStylesForDownload() {
+
+        function getMobileStylesForDownload() { 
             let styles = "";
-            // ... (implementation as before if needed, or can be removed/simplified) ...
+            document.querySelectorAll('style').forEach(styleTag => {
+                if (!styleTag.innerHTML.includes('@page')) {
+                    styles += styleTag.innerHTML;
+                }
+            });
+             styles += `
+            .saved-html-view .group-action-buttons,
+            .saved-html-view .add-price-subgroup-button,
+            .saved-html-view .add-flight-subgroup-button,
+            .saved-html-view .add-itinerary-row-to-group,
+            .saved-html-view .load-detailed-itinerary-html-btn,
+            .saved-html-view .load-detailed-itinerary-excel-btn,
+            .saved-html-view .add-detailed-itinerary-day-button,
+            .saved-html-view .delete-dynamic-section-btn,
+            .saved-html-view .delete-row,
+            .saved-html-view .add-price-row-to-subgroup,
+            .saved-html-view .add-flight-row-to-subgroup,
+            .saved-html-view #activityModal,
+            .saved-html-view .modal-backdrop,
+            .saved-html-view .edit-detailed-date-button,
+            .saved-html-view .save-detailed-date-button,
+            .saved-html-view .cancel-detailed-date-edit-button,
+            .saved-html-view .load-detailed-day-html-button,
+            .saved-html-view .card-actions-direct,
+            .saved-html-view #addGlobalQuoteGroupBtn,
+            .saved-html-view footer button,
+            .saved-html-view footer input,
+            .saved-html-view .price-section-wrapper .add-price-subgroup-button,
+            .saved-html-view .flight-schedule-section-wrapper .add-flight-subgroup-button,
+            .saved-html-view .itinerary-summary-section-wrapper .add-itinerary-row-to-group,
+            .saved-html-view .itinerary-planner-styles .edit-detailed-date-button,
+            .saved-html-view .itinerary-planner-styles .save-detailed-date-button,
+            .saved-html-view .itinerary-planner-styles .cancel-detailed-date-edit-button,
+            .saved-html-view .itinerary-planner-styles .load-detailed-day-html-button,
+            .saved-html-view .itinerary-planner-styles .card-actions-direct,
+            .saved-html-view .itinerary-planner-styles .add-activity-to-day-button,
+            .saved-html-view .itinerary-planner-styles .delete-detailed-day-button,
+            .saved-html-view .itinerary-planner-styles .date-edit-input,
+            .saved-html-view .itinerary-planner-styles .toggle-detailed-day-collapse-button,
+            .saved-html-view .itinerary-detail-section-wrapper .action-button-sm:not(.save-detailed-itinerary-html-btn):not(.save-detailed-day-html-btn)
+            { display: none !important; }
+
+            .saved-html-view .quote-group-section { padding-top: 1rem !important; border-width: 2px !important; }
+            /* day-header-container, title, svg 아이콘 스타일은 이미 @media print, .saved-html-view 블록에 정의됨 */
+            
+            .saved-html-view .itinerary-planner-styles .activity-card, .saved-html-view .readonly-activity-card { border: 1px solid #ccc; box-shadow: none; padding: 0.5rem; margin-top: 0.5rem; margin-bottom: 0; page-break-inside: avoid; display: flex !important; }
+            .saved-html-view .itinerary-planner-styles .card-location a { text-decoration: none; color: black; }
+            .saved-html-view .readonly-collapse-button { display: inline-block !important; }
+            .saved-html-view .day-toggle-button-static { display: inline-flex !important; align-items:center; justify-content:center; } 
+            `;
             return styles;
         }
 
